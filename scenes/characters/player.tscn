@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://nf6hitltvlci"]
+
+[ext_resource type="Script" path="res://scripts/characters/character.gd" id="1_h7wek"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbfnq"]
+radius = 20.0
+height = 75.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_h7wek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbfnq")
+
+[node name="WaterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbfnq")
+
+[node name="FishDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbfnq")
+
+[node name="DrownTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="DrownBar" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -45.0
+offset_right = 40.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[connection signal="area_entered" from="WaterDetector" to="." method="_on_water_entered"]
+[connection signal="area_exited" from="WaterDetector" to="." method="_on_water_exited"]
+[connection signal="body_entered" from="FishDetector" to="." method="_on_fish_detected"]
+[connection signal="timeout" from="DrownTimer" to="." method="_on_drown_timer_timeout"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn5ij6i2j56hm"]
+
+[ext_resource type="Script" path="res://scripts/user_interface/main_menu.gd" id="1_8j45x"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8j45x")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.0
+offset_top = 198.0
+offset_right = 187.0
+offset_bottom = 297.0
+grow_horizontal = 2
+text = "North Pole"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -64.0
+offset_right = 256.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="DebugButton" type="Button" parent="Main"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -111.0
+offset_right = -47.0
+offset_bottom = -47.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Debug"
+
+[node name="Debug" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Debug"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.5
+offset_top = 357.0
+offset_right = 392.5
+offset_bottom = 456.0
+grow_horizontal = 2
+text = "Wpisz nazwę poziomu:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NotFoundLabel" type="Label" parent="Debug"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 604.0
+offset_right = 480.0
+offset_bottom = 671.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Nie znaleziono '[nazwa_poziomu]'!"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Debug/NotFoundLabel"]
+one_shot = true
+
+[node name="LevelInput" type="LineEdit" parent="Debug"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 476.0
+offset_right = 1440.0
+offset_bottom = 604.0
+placeholder_text = "level1"
+
+[node name="BackButton" type="Button" parent="Debug"]
+layout_mode = 1
+offset_left = 49.0
+offset_top = 45.0
+offset_right = 305.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 36
+text = "Back"
+
+[connection signal="pressed" from="Main/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Main/DebugButton" to="." method="_on_debug_button_pressed"]
+[connection signal="timeout" from="Debug/NotFoundLabel/Timer" to="." method="_on_not_found_label_timeout"]
+[connection signal="text_submitted" from="Debug/LevelInput" to="." method="_on_level_input_text_submitted"]
+[connection signal="pressed" from="Debug/BackButton" to="." method="_on_back_button_pressed"]

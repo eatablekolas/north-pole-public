@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://buxnueyhce060"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_55srw"]
+[ext_resource type="PackedScene" uid="uid://nf6hitltvlci" path="res://scenes/characters/player.tscn" id="2_5k6qk"]
+[ext_resource type="PackedScene" uid="uid://doyipiwt4rx1n" path="res://scenes/camera.tscn" id="3_wabv5"]
+[ext_resource type="PackedScene" uid="uid://c71f02ann6q5t" path="res://scenes/characters/fish.tscn" id="4_231q2"]
+[ext_resource type="PackedScene" uid="uid://uo56x7fkin8s" path="res://scenes/characters/eskimo_boat.tscn" id="5_uvl6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgvlp"]
+size = Vector2(267, 623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6dcs"]
+size = Vector2(267, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pveyt"]
+size = Vector2(2728, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcs37"]
+size = Vector2(151.5, 1426)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwajl"]
+size = Vector2(2746.5, 542.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsvbq"]
+size = Vector2(255.75, 197)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_55srw")
+number = 2
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource("2_5k6qk")]
+position = Vector2(290, 472)
+
+[node name="Camera2D" parent="Player" node_paths=PackedStringArray("left_barrier", "right_barrier", "bottom_barrier") instance=ExtResource("3_wabv5")]
+left_barrier = NodePath("../../LeftBarrier/CollisionShape2D")
+right_barrier = NodePath("../../RightBarrier/CollisionShape2D")
+bottom_barrier = NodePath("../../BottomBarrier/CollisionShape2D")
+
+[node name="Fish" parent="." instance=ExtResource("4_231q2")]
+position = Vector2(544, 1001)
+
+[node name="Fish2" parent="." instance=ExtResource("4_231q2")]
+position = Vector2(1936, 1001)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(277, 832.5)
+shape = SubResource("RectangleShape2D_pgvlp")
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
+position = Vector2(1643, 665)
+shape = SubResource("RectangleShape2D_p6dcs")
+
+[node name="EskimoBoat" parent="." instance=ExtResource("5_uvl6y")]
+position = Vector2(2382, 623)
+
+[node name="BottomBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBarrier"]
+position = Vector2(1511, 1282)
+shape = SubResource("RectangleShape2D_pveyt")
+
+[node name="LeftBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
+position = Vector2(74, 710)
+shape = SubResource("RectangleShape2D_mcs37")
+
+[node name="RightBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBarrier"]
+position = Vector2(2946, 725)
+shape = SubResource("RectangleShape2D_mcs37")
+
+[node name="Water" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(1511.75, 883.75)
+shape = SubResource("RectangleShape2D_nwajl")
+
+[node name="Stash" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stash"]
+position = Vector2(274.125, 424.5)
+shape = SubResource("RectangleShape2D_vsvbq")
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timeout"]
+[connection signal="game_over" from="Player" to="." method="_on_game_over"]
+[connection signal="nutrition_increased" from="Fish" to="." method="_on_nutrition_increased"]
+[connection signal="nutrition_increased" from="Fish2" to="." method="_on_nutrition_increased"]

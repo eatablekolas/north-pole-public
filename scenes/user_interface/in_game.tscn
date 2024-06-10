@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bto627k4ncdm6"]
+
+[ext_resource type="PackedScene" uid="uid://wq0o2nmh1b3n" path="res://scenes/user_interface/in_game/game_over.tscn" id="1_2pekr"]
+[ext_resource type="PackedScene" uid="uid://cvmcmpv2gsnnw" path="res://scenes/user_interface/in_game/hud.tscn" id="2_4bg5n"]
+
+[node name="InGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" parent="." instance=ExtResource("1_2pekr")]
+visible = false
+layout_mode = 1
+
+[node name="HUD" parent="." instance=ExtResource("2_4bg5n")]
+layout_mode = 1

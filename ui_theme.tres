@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://kx142jyloo4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bmng"]
+bg_color = Color(0.164706, 0.835294, 0.878431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldgwi"]
+bg_color = Color(0.105882, 0.67451, 0.709804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kfuk"]
+bg_color = Color(0.0392157, 0.364706, 0.384314, 1)
+
+[resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 20
+Button/font_sizes/font_size = 72
+Button/styles/hover = SubResource("StyleBoxFlat_4bmng")
+Button/styles/normal = SubResource("StyleBoxFlat_ldgwi")
+Button/styles/pressed = SubResource("StyleBoxFlat_7kfuk")
+HUDLabel/base_type = &"Label"
+HUDLabel/font_sizes/font_size = 48
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 20
+Label/font_sizes/font_size = 72
+LineEdit/font_sizes/font_size = 72
+TextEdit/font_sizes/font_size = 72

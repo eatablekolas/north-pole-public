@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh5l1b28n6i87"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_yelos"]
+[ext_resource type="PackedScene" uid="uid://bto627k4ncdm6" path="res://scenes/user_interface/in_game.tscn" id="2_ytnfr"]
+[ext_resource type="PackedScene" uid="uid://bn5ij6i2j56hm" path="res://scenes/user_interface/main_menu.tscn" id="3_spb1p"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_yelos")
+start_level = "level2"
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="InGame" parent="UserInterface" instance=ExtResource("2_ytnfr")]
+visible = false
+
+[node name="MainMenu" parent="UserInterface" instance=ExtResource("3_spb1p")]
+
+[connection signal="debug_level_submitted" from="UserInterface/MainMenu" to="." method="_on_debug_level_submitted"]
+[connection signal="play_button_pressed" from="UserInterface/MainMenu" to="." method="_on_play_button_pressed"]

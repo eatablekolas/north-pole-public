@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uo56x7fkin8s"]
+
+[ext_resource type="PackedScene" uid="uid://ccbq87ejju5oo" path="res://scenes/characters/eskimo.tscn" id="1_cn6e5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j7i2"]
+size = Vector2(303, 89)
+
+[node name="EskimoBoat" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8j7i2")
+
+[node name="Eskimo" parent="." instance=ExtResource("1_cn6e5")]
+position = Vector2(-69, -61)

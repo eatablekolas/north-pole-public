@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c71f02ann6q5t"]
+
+[ext_resource type="Script" path="res://scripts/characters/fish.gd" id="1_tjk38"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbfnq"]
+radius = 20.0
+height = 75.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3p3k7"]
+radius = 20.0
+height = 75.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbn7q"]
+radius = 20.0
+height = 75.0
+
+[node name="Fish" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 33
+script = ExtResource("1_tjk38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbfnq")
+
+[node name="WaterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3p3k7")
+
+[node name="StashDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StashDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbn7q")
+
+[connection signal="area_entered" from="WaterDetector" to="." method="_on_water_entered"]
+[connection signal="area_exited" from="WaterDetector" to="." method="_on_water_exited"]
+[connection signal="area_entered" from="StashDetector" to="." method="_on_stash_entered"]
+[connection signal="area_exited" from="StashDetector" to="." method="_on_stash_exited"]
