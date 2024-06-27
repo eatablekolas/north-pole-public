@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b6k0jby7vw0o1"]
+
+[node name="LandLine" type="Line2D"]
+position = Vector2(0, 540)
+texture_mode = 2

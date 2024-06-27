@@ -1,0 +1,232 @@
+[gd_scene load_steps=3 format=3 uid="uid://yliwecc6mhqa"]
+
+[ext_resource type="Script" path="res://scripts/proc_gen/terrain_line2.gd" id="1_wpau6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wt8wt"]
+frequency = 0.001
+
+[node name="TerrainLine" type="Node2D"]
+script = ExtResource("1_wpau6")
+generator = SubResource("FastNoiseLite_wt8wt")
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="WaterLine" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(0, 540)
+points = PackedVector2Array(0, 0, 1920, 0)
+default_color = Color(0, 1, 1, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 540)
+polygon = PackedVector2Array(0, 0, 1920, 0)
+
+[node name="DebugInterface" type="CanvasLayer" parent="."]
+
+[node name="PointCount" type="Control" parent="DebugInterface"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="DebugInterface/PointCount"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 93.0
+theme_type_variation = &"HUDLabel"
+text = "Point Count:"
+horizontal_alignment = 2
+
+[node name="Counter" type="Label" parent="DebugInterface/PointCount"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 24.0
+offset_right = 1052.0
+offset_bottom = 91.0
+theme_type_variation = &"HUDLabel"
+text = "200"
+
+[node name="Slider" type="HSlider" parent="DebugInterface/PointCount"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 752.0
+offset_bottom = 72.0
+min_value = 1.0
+max_value = 1000.0
+value = 200.0
+
+[node name="Frequency" type="Control" parent="DebugInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 72.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="DebugInterface/Frequency"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 93.0
+theme_type_variation = &"HUDLabel"
+text = "Frequency:"
+horizontal_alignment = 2
+
+[node name="Counter" type="Label" parent="DebugInterface/Frequency"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 24.0
+offset_right = 1052.0
+offset_bottom = 91.0
+theme_type_variation = &"HUDLabel"
+text = "0.1"
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Slider" type="HSlider" parent="DebugInterface/Frequency"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 752.0
+offset_bottom = 72.0
+max_value = 0.05
+step = 0.0
+value = 0.01
+exp_edit = true
+
+[node name="YMultiplier" type="Control" parent="DebugInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 144.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="DebugInterface/YMultiplier"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 93.0
+theme_type_variation = &"HUDLabel"
+text = "Y Multiplier:"
+horizontal_alignment = 2
+
+[node name="Counter" type="Label" parent="DebugInterface/YMultiplier"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 24.0
+offset_right = 928.0
+offset_bottom = 91.0
+theme_type_variation = &"HUDLabel"
+text = "100"
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Slider" type="HSlider" parent="DebugInterface/YMultiplier"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 752.0
+offset_bottom = 72.0
+min_value = 1.0
+max_value = 400.0
+step = 0.0
+value = 100.0
+
+[node name="Accuracy" type="Control" parent="DebugInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 968.0
+offset_right = 640.0
+offset_bottom = 968.0
+
+[node name="Label" type="Label" parent="DebugInterface/Accuracy"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 93.0
+theme_type_variation = &"HUDLabel"
+text = "Accuracy:"
+horizontal_alignment = 2
+
+[node name="Counter" type="Label" parent="DebugInterface/Accuracy"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 24.0
+offset_right = 1180.0
+offset_bottom = 91.0
+theme_type_variation = &"HUDLabel"
+text = "1"
+
+[node name="Slider" type="HSlider" parent="DebugInterface/Accuracy"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 872.0
+offset_bottom = 72.0
+min_value = 1.0
+max_value = 10.0
+step = 0.0
+value = 1.0
+
+[node name="Segments" type="Control" parent="DebugInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1064.0
+offset_top = 144.0
+offset_right = 1064.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="DebugInterface/Segments"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 93.0
+theme_type_variation = &"HUDLabel"
+text = "Segments:"
+horizontal_alignment = 2
+
+[node name="Counter" type="Label" parent="DebugInterface/Segments"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 24.0
+offset_right = 856.0
+offset_bottom = 91.0
+theme_type_variation = &"HUDLabel"
+text = "1"
+
+[node name="Slider" type="HSlider" parent="DebugInterface/Segments"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 752.0
+offset_bottom = 72.0
+min_value = 1.0
+value = 1.0
+exp_edit = true
+
+[node name="SeedButton" type="Button" parent="DebugInterface"]
+offset_left = 24.0
+offset_top = 952.0
+offset_right = 616.0
+offset_bottom = 1056.0
+text = "Randomize Seed"
+
+[node name="SegmentButton" type="CheckBox" parent="DebugInterface"]
+offset_left = 1264.0
+offset_top = 24.0
+offset_right = 1896.0
+offset_bottom = 128.0
+text = "Segmented Mode"
+
+[connection signal="value_changed" from="DebugInterface/PointCount/Slider" to="." method="_on_count_slider_value_changed"]
+[connection signal="value_changed" from="DebugInterface/Frequency/Slider" to="." method="_on_frequency_slider_value_changed"]
+[connection signal="value_changed" from="DebugInterface/YMultiplier/Slider" to="." method="_on_y_slider_value_changed"]
+[connection signal="value_changed" from="DebugInterface/Accuracy/Slider" to="." method="_on_accuracy_slider_value_changed"]
+[connection signal="value_changed" from="DebugInterface/Segments/Slider" to="." method="_on_segment_slider_value_changed"]
+[connection signal="pressed" from="DebugInterface/SeedButton" to="." method="_on_seed_button_pressed"]
+[connection signal="toggled" from="DebugInterface/SegmentButton" to="." method="_on_segment_button_toggled"]

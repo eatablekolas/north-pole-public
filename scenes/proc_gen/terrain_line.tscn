@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://yrt3mlxml1mp"]
 
-[ext_resource type="Script" path="res://scripts/terrain_line.gd" id="1_inxja"]
+[ext_resource type="Script" path="res://scripts/proc_gen/terrain_line.gd" id="1_higci"]
 
 [sub_resource type="Gradient" id="Gradient_8kx6w"]
 interpolation_mode = 1
-offsets = PackedFloat32Array()
-colors = PackedColorArray()
+offsets = PackedFloat32Array(0.4)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rn7k4"]
 
 [node name="TerrainLine" type="Line2D"]
 position = Vector2(0, 540)
 gradient = SubResource("Gradient_8kx6w")
-script = ExtResource("1_inxja")
+texture_mode = 2
+script = ExtResource("1_higci")
 generator = SubResource("FastNoiseLite_rn7k4")
 
 [node name="WaterLine" type="Line2D" parent="."]
